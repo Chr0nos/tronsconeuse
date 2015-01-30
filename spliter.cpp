@@ -40,7 +40,8 @@ void Spliter::split() {
         //on lis un block tant que la taille du fichier n'a pas été atteinte
         for (quint64 subpos = 0 ; subpos < size ; subpos += blockSize) {
             pos += dfile.write(file.read(blockSize));
-            emit(position(pos / fileSize * (quint64) 10000));
+            int bpos = (float) ((float) pos / (float) fileSize) * (quint64) 10000;
+            emit(position(bpos));
         }
         dfile.close();
     }
